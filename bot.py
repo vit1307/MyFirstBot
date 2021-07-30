@@ -4,7 +4,7 @@ import random
 import telebot
 
 # variables
-isRunning = True
+isRunning = False
 
 TOKEN = os.environ["TOKEN"]
 
@@ -18,12 +18,11 @@ botStickos = [
 # create bot
 bot = telebot.TeleBot(TOKEN)
 
-# run bot
-bot.polling(none_stop=True)
-
 #handlers
 @bot.message_handler(commands=['start', 'go'])
 def start_handler(message):
+	global isRunning
+
 	if not isRunning:
 		chat_id = message.chat.id
 		msg = bot.send_message(chat_id, "Привет, я - Бот! Как дела?")
@@ -59,3 +58,5 @@ def sticker_handler(message):
 	
 	bot.send_sticker(chat_id, random.choice(botStickos))
 
+# run bot
+bot.polling(none_stop=True)

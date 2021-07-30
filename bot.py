@@ -1,12 +1,12 @@
-import telebot
-
+import os
 import random
 
-# import bot telegram token
-from tok import tok
+import telebot
 
 # variables
 isRunning = True
+
+TOKEN = os.environ["TOKEN"]
 
 botVocabulary = ["Ага", "Ясно", "Каеф"]
 botStickos = [
@@ -16,7 +16,7 @@ botStickos = [
 ]
 
 # create bot
-bot = telebot.TeleBot(tok())
+bot = telebot.TeleBot(TOKEN)
 
 # run bot
 bot.polling(none_stop=True)
